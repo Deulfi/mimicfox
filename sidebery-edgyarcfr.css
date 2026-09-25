@@ -185,21 +185,26 @@ transition:height 300ms ease, width 300ms ease, top 300ms ease;}
 /* Container line of normal tabs: same approach as the original theme -
    only toggle height/width/border-radius, let Sidebery position the element itself */
 .Tab[data-pin="false"] {
-    &[data-active="true"] .ctx {
-        width: 3px !important;
-				/*90% height for the rounded edges and 5% down to align it to the middle*/
-        height: 90% !important;
-				top: 5%;
-        border-radius: 0 4px 4px 0 !important;
-    }
-    &[data-active="false"] .ctx {
-        height: 50%;
+    .ctx {
         width: 3px;
-        top: 25% !important;
+        height: var(--ctx-height) !important;
+        top: calc((100% - var(--ctx-height)) / 2) !important;
         border-radius: 20px;
     }
-}
 
+    &[data-active="true"] .ctx {
+        --ctx-height: 90%;
+        border-radius: 0 4px 4px 0 !important;
+    }
+
+    &[data-active="false"]:hover .ctx {
+        --ctx-height: 70%;
+    }
+
+    &[data-active="false"] .ctx {
+        --ctx-height: 50%;
+    }
+}
 
 /* Grouped tabs */
 .Tab .exp-icon {
