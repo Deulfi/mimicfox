@@ -56,6 +56,31 @@ tooltip {
   padding: 4px !important;
 }
 
+richlistbox#downloadsListBox richlistitem.download-state {
+  margin-right: 8px !important;
+}
+
+richlistitem.download-state button.downloadButton.downloadIconShow {
+  margin-right: 2px !important;
+}
+
+richlistitem.download > button {
+  margin: auto !important;
+}
+
+richlistitem.download-state hbox.downloadMainArea image.downloadTypeIcon{
+  margin: 8px 14px 8px 0px !important;
+}
+
+richlistitem.download.download-state hbox.downloadMainArea image.downloadTypeIcon {
+  margin: 8px 14px 8px 8px !important;
+}
+
+hbox#downloadsSummary image.downloadTypeIcon{
+  margin-left:16px !important;
+  margin-right:14px !important;
+}
+
 #editBookmarkPanelContent {
   padding: 8px !important;
 }
@@ -385,7 +410,7 @@ panelview .toolbarbutton-1,
 }
 
 #downloadsListBox > richlistitem {
-  padding-inline-end: 8px !important;
+  /*! padding-inline-end: 8px !important; */
   border-radius: var(--arrowpanel-menuitem-border-radius) !important;
 }
 
