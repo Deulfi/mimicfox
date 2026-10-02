@@ -1,15 +1,26 @@
 /* mimicfox 🔥🦊 */
 /* sidebar.css */
-
 :root {
   --sidebar-box-size: 3.5em;
   --sidebar-tab-audio-size: 12px;
+  --tab-border-radius: 8px !important;
+  --border-radius-large: 8px !important;
 }
 
 :root[sidebar-expand-on-hover] #sidebar-main {
   background-color: var(--sidebar-background-color) !important;
   border-radius: var(--uc-tweak-rounded-corners-radius) !important;
   margin: var(--uc-tweak-rounded-corners-padding) !important;
+}
+
+#tabbrowser-tabs[orient="vertical"] {
+  --tab-padding-block-start: 0px !important;
+  --tab-padding-block-end: 4px !important;
+}
+
+/* fix 158 native sidebar new tab button vertical margin */
+#tabbrowser-arrowscrollbox[orient="vertical"] > #tabbrowser-arrowscrollbox-periphery > #tabs-newtab-button {
+  margin-block: calc(2 * var(--tab-margin-block));
 }
 
 /* shrink "view Tabs from other devices" */
@@ -25,13 +36,25 @@
 }
 
 /* fix tab icon color */
-#contentAreaContextMenu menu[id^="_3c078156-979c-498b-8990-85f7987dd929_-menuitem-"] .menu-icon {
-  filter: brightness(0) invert(0);
+/* light theme */
+#contentAreaContextMenu menuitem[id*="_3c078156-979c-498b-8990-85f7987dd929_"] .menu-icon {
+  filter: brightness(0) invert(0) !important;
+}
+/* dark */
+@media (prefers-color-scheme: dark) {
+  #contentAreaContextMenu menuitem[id*="_3c078156-979c-498b-8990-85f7987dd929_"] .menu-icon {
+    filter: brightness(0) invert(1) !important;
+  }
 }
 
-@media (prefers-color-scheme: dark) {
-  #contentAreaContextMenu menu[id^="_3c078156-979c-498b-8990-85f7987dd929_-menuitem-"] .menu-icon {
-    filter: brightness(0) invert(1);
+/* fix sidebery popup context menu icon margin */
+@media (-moz-platform: windows) or (-moz-platform: macos) {
+  #contentAreaContextMenu menuitem[id*="_3c078156-979c-498b-8990-85f7987dd929_"] .menu-icon {
+    menuitem:where(.menuitem-iconic, [image]) > &,
+    menu:where(.menu-iconic) > & {
+      margin-inline-end: var(--space-medium) !important;
+      margin-inline-start: -2px;
+    }
   }
 }
 
