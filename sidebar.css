@@ -456,7 +456,7 @@ browser#sidebar {
       }
     }
 
-    #browser {
+    #browser:has(> #sidebar-box) {
       position: relative;
       padding-inline-start: var(--uc-sidebar-width) !important;
     }
