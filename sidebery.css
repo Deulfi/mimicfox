@@ -18,7 +18,6 @@
   --general-border-radius: 8px;
   --tabs-normal-bg: color-mix(in srgb, var(--tabs-activated-bg) 50%, transparent);
   --ntb-btn-height: var(--tab-size);
-  --general-margin: 8px;
 }
 
 :root {
@@ -32,8 +31,12 @@
   --tab-size: round(nearest, max(32px, calc(1.5 * 1em)), 4px);
 }
 
+.Notifications + .main-box .central-box {
+  margin-top: 0px !important;
+}
+
 #root[data-pinned-tabs-position="top"] .PinnedTabsBar {
-  padding: 0 4px 4px;
+  padding: 0 6px 6px;
 }
 
 /* remove tree indent */
@@ -46,11 +49,17 @@
   :root {
     --tab-size: max(32px, calc(1.5 * 1em));
   }
+  #root.root {
+    --general-margin: 6px;
+  }
 }
 
 @media (width >= 48px) {
   :root {
     --tab-size: max(32px, calc(1.5 * 2em));
+  }
+  #root.root {
+    --general-margin: 6px;
   }
 }
 
@@ -65,10 +74,6 @@
 
 .new-tab-btns {
   transition: all 300ms ease;
-}
-
-.Notifications + .main-box .central-box {
-  margin-top: 5px !important;
 }
 
 /* remove tabs background */
@@ -121,10 +126,30 @@
     content: "" !important;
     display: block !important;
     border-bottom: 1px solid color-mix(in srgb, currentColor 25%, transparent) !important;
+    border: none;
+    background-color: transparent;
+    background-image:
+      radial-gradient(circle closest-side, light-dark(#000, #fff) 100%, transparent 100%),
+      radial-gradient(circle closest-side, light-dark(#000, #fff) 100%, transparent 100%),
+      linear-gradient(light-dark(#000, #fff), light-dark(#000, #fff));
+    background-size: var(2px 2px, 2px 2px, calc(16px - 2px) 2px);
+    background-repeat: no-repeat;
+    margin-inline: var(0.75rem);
+    min-height: 2px;
+    max-width: 1rem;
+    margin-inline: auto;
+    border-radius: 99px;
+    border-width: 1px 0px;
+    border-top-color: threedhighlight;
+    border-bottom-color: threedshadow;
+    cursor: ns-resize;
+    border-style: solid;
+    border-inline-color: threedhighlight threedshadow;
+    min-width: 6px;
   }
 
   .PinnedTabsBar[data-empty="false"] ~ .panel-box .TabsPanel.panel {
-    padding-top: 10px;
+    padding-top: 8px;
   }
 
   /* center tab */
@@ -228,4 +253,38 @@
 /* hide empty space under tab bar */
 .TabsPanel.panel .bottom-space {
   display: none;
+}
+
+.Tab .exp {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 0px;
+  left: 0px;
+  opacity: 0;
+  z-index: -1;
+  cursor: pointer;
+  transform-origin: center;
+  transition:
+    opacity var(--d-fast),
+    transform var(--d-fast);
+}
+
+.Tab .exp-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  fill: var(--tabs-normal-fg);
+}
+
+#root[data-search="false"] .Tab[data-parent="true"][data-folded="true"] .fav .exp {
+  z-index: 1;
+  opacity: 1;
+  transform: rotate(-90deg);
+}
+
+.Tab[data-folded="true"] .fav .exp::before {
+  opacity: 0 !important;
 }
