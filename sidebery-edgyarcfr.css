@@ -145,11 +145,11 @@ transition:height 300ms ease, width 300ms ease, top 300ms ease;}
 }
 
 .Tab[data-discarded="true"] .t-box {
-    opacity: 0.7 !important;
+	filter: brightness(0.5);
 }
 
 .Tab:hover[data-discarded="true"] .t-box {
-    opacity: 1 !important;
+	filter: brightness(1);
 }
 
 /* Tab colors */
